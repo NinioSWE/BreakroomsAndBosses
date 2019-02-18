@@ -10,6 +10,7 @@ public class Interaction : MonoBehaviour {
     {
         if(collision.tag == "Interactable")
         {
+            Debug.Log("Interaction Hover over " + collision.name);
             collision.SendMessage("Hover");            
         }
     }
@@ -18,6 +19,7 @@ public class Interaction : MonoBehaviour {
     {
         if (isInteracting)
         {
+            Debug.Log("Interacting with " + collision.name);
             if (collision.tag == "Interactable")
             {
                 collision.SendMessage("Interact");

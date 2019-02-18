@@ -56,12 +56,10 @@ public class PlayerController : MonoBehaviour {
         if(isHorizontal)
         {
             interactor.transform.position = transform.position + Vector3.right * distance * value;
-            Debug.Log("Indicator localePosition: " + interactor.transform.localPosition);
         }
         else
         {
             interactor.transform.position = transform.position + Vector3.up * distance * value;
-            Debug.Log("Indicator localePosition: " + interactor.transform.localPosition);
 
         }
 

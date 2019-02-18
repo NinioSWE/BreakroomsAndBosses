@@ -31,24 +31,25 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    void AddTopic (GameObject topic)
+    public void AddTopic (GameObject topic)
     {
         GameObject go = Instantiate(topic, topicParent);
         go.GetComponent<ItemInfo>().textObject = textObject;
     }
 
-    void AddItem (GameObject item)
+    public void AddItem (GameObject item)
     {
-        GameObject go = Instantiate(item, itemParent);
-        go.GetComponent<ItemInfo>().textObject = textObject;
+        item.SetActive(true);
+        item.transform.SetParent(itemParent);
+        item.GetComponent<ItemInfo>().textObject = textObject;
     }
 
-    void RemoveItem (string name)
+    public void RemoveItem (string name)
     {
         Destroy(itemParent.Find(name).gameObject);
     }
 
-    void RemoveTopic(string name)
+    public void RemoveTopic(string name)
     {
         Destroy(topicParent.Find(name).gameObject);
     }
