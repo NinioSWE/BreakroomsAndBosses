@@ -37,7 +37,7 @@ public class Menu : MonoBehaviour
     {
         options = buttonsParent.GetComponentsInChildren<Button>();
         if (options.Length != (size.x * size.y)) {
-            Debug.LogError("missmatch in Menu size and buttonCount (" + transform.name + ")");
+            //Debug.LogError("missmatch in Menu size and buttonCount (" + transform.name + ")");
         }
         if (onSelect != null) {
             onSelect(CurrentButton);
@@ -66,22 +66,29 @@ public class Menu : MonoBehaviour
         }
         switch (dir) {
             case Direction.up:
-                SelectedIndex.y = getNegativeMoveFrom(SelectedIndex.y,size.y);
+                //Pers ful lösning..
+                if (SelectedIndex.x != 2) 
+                    SelectedIndex.y = getNegativeMoveFrom(SelectedIndex.y, size.y);
                 break;
 
             case Direction.left:
                 SelectedIndex.x = getNegativeMoveFrom(SelectedIndex.x, size.x);
-
                 break;
 
             case Direction.right:
                 SelectedIndex.x = getPositiveMoveFrom(SelectedIndex.x, size.x);
-
                 break;
 
             case Direction.down:
-                SelectedIndex.y = getPositiveMoveFrom(SelectedIndex.y, size.y);
+                //Pers ful lösning..s
+                if (SelectedIndex.x != 2)
+                    SelectedIndex.y = getPositiveMoveFrom(SelectedIndex.y, size.y);
                 break;
+        }
+        //Pers ful lösning..s
+        if (SelectedIndex.x == 2)
+        {
+            SelectedIndex.y = 0;
         }
         if (onSelect != null) {
             onSelect(CurrentButton);
@@ -91,8 +98,8 @@ public class Menu : MonoBehaviour
     public void PressSelectedButton()
     {
         Button button = options[SelectedIndex.x + (SelectedIndex.y * size.x)];
-
-        ExecuteEvents.Execute(button.gameObject, new BaseEventData(ourEventSystem), ExecuteEvents.submitHandler);
+        button.onClick.Invoke();
+        //ExecuteEvents.Execute(button.gameObject, new BaseEventData(ourEventSystem), ExecuteEvents.submitHandler);
     }
 
 
